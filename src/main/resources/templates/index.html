@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="et">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Laua broneerimine</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: #D2C9ED; border: 1px solid #ccc; padding: 20px; border-radius: 8px; box-shadow: 2px 2px 10px #eee; }
+        button { background: #7157C7; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; }
+    </style>
 </head>
 <body>
+
+<div class="card">
+    <h1>Tere tulemast restorani Puri!</h1>
+    <p>Tee meelepäärased valikud, et leida endale sobiv laud.</p>
+
+    <form th:action="@{/search}" method="post">
+        <div>
+            <label>Inimeste arv:</label><br>
+            <input type="number" name="peopleCount" min="1" max="10" required>
+        </div>
+        <div>
+            <label>Kuupäev:</label><br>
+            <input type="date" name="date" required>
+        </div>
+        <br>
+        <div>
+            <label>Kellaaeg:</label><br>
+            <select name="time" required>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
+                <option value="22:00">22:00</option>
+            </select>
+        </div>
+        <div>
+            <p>Eelistused:</p>
+            <input type="checkbox" name="features" value="aken" id="feat1">
+            <label for="feat1">Akna all</label><br>
+
+            <input type="checkbox" name="features" value="vaikne" id="feat2">
+            <label for="feat2">Vaikne ala</label><br>
+
+            <input type="checkbox" name="features" value="privaatne" id="feat3">
+            <label for="feat3">Privaatne nurk</label><br>
+
+            <input type="checkbox" name="features" value="mängunurk" id="feat4">
+            <label for="feat4">Vaatega avatud köögile</label>
+        </div>
+        <br>
+        <button type="submit">Leia laud</button>
+    </form>
+
+</div>
 
 </body>
 </html>
