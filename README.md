@@ -4,7 +4,7 @@ A table reservation system for Restaurant Puri.
 
 ## Description
 A web application that allows customers to search for and book available 
-restaurant tables based on group size, date, time, and seating preferences.
+restaurant tables based on group size, date, time, and seating preferences. 
 On startup, up to 3 random reservations are generated per table within the next 7 days.
 
 ## Technologies
@@ -24,5 +24,5 @@ On startup, up to 3 random reservations are generated per table within the next 
 4. Open your browser and go to `http://localhost:8080`
 
 ## Author
-Greete Siemann
+Greete Siemann, 
 CGI internship 2026
