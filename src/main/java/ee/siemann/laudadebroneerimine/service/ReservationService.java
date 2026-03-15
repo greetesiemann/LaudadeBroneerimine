@@ -17,22 +17,30 @@ public class ReservationService {
     private final TableRepository tableRepository;
     private final ReservationRepository reservationRepository;
 
+    /**
+     * This method finds the tables that are suitable
+     * @param peopleCount how many people there are coming
+     * @param features what kind of preferences they have
+     * @param time what time they want to make the reservation
+     * @return List of suitable tables for the costumer
+     */
     public List<RestaurantTable> findAvailableTables(int peopleCount, List<String> features, LocalDateTime time) {
-        // 1. Võtame kõik lauad, kuhu inimesed ära mahuvad
         List<RestaurantTable> suitableTables = tableRepository.findAll().stream()
                 .filter(table -> table.getPlaces() >= peopleCount)
                 .collect(Collectors.toList());
-
-        // 2. Filtreerime välja need, mis on sel ajal juba kinni
         return suitableTables.stream()
                 .filter(table -> isTableFree(table, time))
                 .collect(Collectors.toList());
     }
 
+    /**
+     * This method checks if a table is free
+     * @param table the table we are looking at
+     * @param time time when the reservation should start
+     * @return true if the table is free, false if not
+     */
     private boolean isTableFree(RestaurantTable table, LocalDateTime time) {
-        LocalDateTime requestedEnd = time.plusHours(2); // Oletame, et broneering kestab 2h
-
-        // Küsime andmebaasist selle laua broneeringud
+        LocalDateTime requestedEnd = time.plusHours(2); // Let's assume one reservation last for 2 hours
         return reservationRepository.findByRestaurantTable(table).stream()
                 .noneMatch(res ->
                         time.isBefore(res.getEndTime()) &&

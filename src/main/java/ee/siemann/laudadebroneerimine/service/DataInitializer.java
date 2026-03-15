@@ -25,11 +25,14 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        tableRepository.save(new RestaurantTable(null, 1, 2, List.of("aken", "vaikne"), 1, 1, false));
-        tableRepository.save(new RestaurantTable(null, 2, 4, List.of("mängunurk"), 1, 2 , false));
-        tableRepository.save(new RestaurantTable(null, 3, 2, List.of("privaatne"), 2, 1,  false));
-        tableRepository.save(new RestaurantTable(null, 4, 8, List.of("aken"), 2, 2,  false));
-        tableRepository.save(new RestaurantTable(null, 5, 4, List.of("terrass"), 3, 1, false));
+        tableRepository.save(new RestaurantTable(null, 1, 2, List.of("Akna all", "Vaikne ala"), 1, 1, false));
+        tableRepository.save(new RestaurantTable(null, 2, 4, List.of("Akna all"), 1, 2 , false));
+        tableRepository.save(new RestaurantTable(null, 3, 2, List.of("Vaatega avatud köögile"), 2, 1,  false));
+        tableRepository.save(new RestaurantTable(null, 4, 6, List.of("Vaatega avatud köögile"), 2, 1,  false));
+        tableRepository.save(new RestaurantTable(null, 5, 4, List.of("Vaatega avatud köögile"), 2, 1,  false));
+        tableRepository.save(new RestaurantTable(null, 6, 8, List.of("Terass"), 2, 2,  false));
+        tableRepository.save(new RestaurantTable(null, 7, 4, List.of("Terass"), 3, 1, false));
+        tableRepository.save(new RestaurantTable(null, 8, 2, List.of("Terass"), 3, 1, false));
         System.out.println("Tables are added");
         List<RestaurantTable> tables = tableRepository.findAll();
         for (RestaurantTable table : tables) {

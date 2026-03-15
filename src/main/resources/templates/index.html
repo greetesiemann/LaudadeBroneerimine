@@ -27,7 +27,7 @@
             overflow: hidden;
         }
 
-        /* ── SIDEBAR ── */
+        /*SIDEBAR*/
         .sidebar {
             width: var(--sidebar-w);
             min-height: 100vh;
@@ -145,7 +145,7 @@
         }
         .btn-search:hover { background: var(--gold2); transform: translateY(-1px); }
 
-        /* ── MAIN ── */
+        /*MAIN*/
         .main {
             flex: 1;
             display: flex;
@@ -187,7 +187,7 @@
         .empty-state svg { opacity: 0.25; }
         .empty-state p { font-size: 15px; color: var(--muted); }
 
-        /* ── FLOOR PLAN ── */
+        /* FLOOR PLAN */
         .floor-wrap {
             display: none; /* shown via JS after search */
         }
@@ -272,7 +272,7 @@
             padding: 2px 9px;
         }
 
-        /* ── MODAL ── */
+        /*MODAL*/
         .modal-backdrop {
             display: none;
             position: fixed; inset: 0;
@@ -372,7 +372,7 @@
 </head>
 <body>
 
-<!-- ══════════════ SIDEBAR ══════════════ -->
+<!--SIDEBAR-->
 <aside class="sidebar">
     <div class="logo">Puri</div>
     <div class="logo-sub">Restoran </div>
@@ -382,27 +382,35 @@
     <form th:action="@{/search}" method="post" id="searchForm">
         <label class="field-label">Inimeste arv</label>
         <input type="number" name="peopleCount" min="1" max="10"
-               th:value="${peopleCount}" placeholder="nt. 2" required>
+               th:value="${peopleCount}" placeholder="nt 2" required>
 
         <label class="field-label">Kuupäev</label>
         <input type="date" name="date"
                th:value="${bookingDate}" required>
 
         <label class="field-label">Kellaaeg</label>
-        <select name="time">
-            <option th:each="h : ${#numbers.sequence(11,22)}"
-                    th:value="${#strings.toString(h) + ':00'}"
-                    th:text="${#strings.toString(h) + ':00'}"
-                    th:selected="${bookingTime != null and #strings.toString(bookingTime) == #strings.toString(h) + ':00'}">
-            </option>
+        <select name="time" required>
+            <option value="" disabled selected>Vali kellaaeg</option>
+            <option value="11:00" th:selected="${#strings.toString(bookingTime) == '11:00'}">11:00</option>
+            <option value="12:00" th:selected="${#strings.toString(bookingTime) == '12:00'}">12:00</option>
+            <option value="13:00" th:selected="${#strings.toString(bookingTime) == '13:00'}">13:00</option>
+            <option value="14:00" th:selected="${#strings.toString(bookingTime) == '14:00'}">14:00</option>
+            <option value="15:00" th:selected="${#strings.toString(bookingTime) == '15:00'}">15:00</option>
+            <option value="16:00" th:selected="${#strings.toString(bookingTime) == '16:00'}">16:00</option>
+            <option value="17:00" th:selected="${#strings.toString(bookingTime) == '17:00'}">17:00</option>
+            <option value="18:00" th:selected="${#strings.toString(bookingTime) == '18:00'}">18:00</option>
+            <option value="19:00" th:selected="${#strings.toString(bookingTime) == '19:00'}">19:00</option>
+            <option value="20:00" th:selected="${#strings.toString(bookingTime) == '20:00'}">20:00</option>
+            <option value="21:00" th:selected="${#strings.toString(bookingTime) == '21:00'}">21:00</option>
+            <option value="22:00" th:selected="${#strings.toString(bookingTime) == '22:00'}">22:00</option>
         </select>
 
         <label class="field-label" style="margin-top:20px;">Eelistused</label>
         <div class="features-grid">
             <label class="feat-chip">
-                <input type="checkbox" name="features" value="aken"
-                       th:checked="${selectedFeatures != null and #lists.contains(selectedFeatures,'aken')}">
-                <span class="dot"></span> Akena all
+                <input type="checkbox" name="features" value="akna all"
+                       th:checked="${selectedFeatures != null and #lists.contains(selectedFeatures,'akna all')}">
+                <span class="dot"></span> Akna all
             </label>
             <label class="feat-chip">
                 <input type="checkbox" name="features" value="vaikne"
@@ -410,13 +418,13 @@
                 <span class="dot"></span> Vaikne ala
             </label>
             <label class="feat-chip">
-                <input type="checkbox" name="features" value="privaatne"
-                       th:checked="${selectedFeatures != null and #lists.contains(selectedFeatures,'privaatne')}">
+                <input type="checkbox" name="features" value="Terass"
+                       th:checked="${selectedFeatures != null and #lists.contains(selectedFeatures,'Terass')}">
                 <span class="dot"></span> Terass
             </label>
             <label class="feat-chip">
-                <input type="checkbox" name="features" value="mängunurk"
-                       th:checked="${selectedFeatures != null and #lists.contains(selectedFeatures,'mängunurk')}">
+                <input type="checkbox" name="features" value="vaatega köögile"
+                       th:checked="${selectedFeatures != null and #lists.contains(selectedFeatures,'vaatega köögile')}">
                 <span class="dot"></span> Vaatega avatud köögile
             </label>
         </div>
@@ -425,7 +433,7 @@
     </form>
 </aside>
 
-<!-- ══════════════ MAIN ══════════════ -->
+<!--MAIN-->
 <main class="main">
     <div class="main-header">
         <h1>Saaliplaan</h1>
@@ -469,7 +477,7 @@
     </div>
 </main>
 
-<!-- ══════════════ MODAL ══════════════ -->
+<!--MODAL-->
 <div class="modal-backdrop" id="modalBackdrop">
     <div class="modal">
         <h3>Kinnita broneering</h3>
