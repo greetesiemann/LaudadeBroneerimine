@@ -7,6 +7,9 @@ restaurant tables based on group size, date, time, and seating preferences.
 On startup, up to 3 random reservations are generated per table within the next 7 days,
 with no overlapping time slots. Each reservation lasts 2 hours.
 
+## Screenshot
+![Table reservation interface](screenshot_reservation_interface.png)
+
 ## Table Selection Logic
 When selecting the best available table, the system uses the following priority order:
 1. Tables where all requested features match
